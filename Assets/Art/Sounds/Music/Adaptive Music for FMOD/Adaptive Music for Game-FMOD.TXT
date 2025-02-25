@@ -1,0 +1,12 @@
+Hi
+
+“Adaptive Music for Game 001” – background tracks for embedding in indie game 
+or like background music for your podcast or show. 
+A collection of pre-edited individual song sections that can be easy to 
+use for Horizontal re-sequencing in FMOD & WWISE. 
+
+Email me on zantonz70@gmail.com if you like it. 
+I will send a more complete version of this kit
+Total WAV files: Loops 14 pcs, Song has tail 12 pcs, Jingles 4 pcs, 6 Tracks. 6 categories: 
+Boss, Congratuletions, Game Over, Level, Loading, Menu, Pause. 
+Plus documentation containing instructions and a description of the segment sequence 

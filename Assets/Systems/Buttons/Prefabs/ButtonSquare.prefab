@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad89c1ace594c2048aa82524d8fbf162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _buttonSound: {fileID: 8300000, guid: a48cb59ea02a88945bc599c7d9546a35, type: 3}
 --- !u!95 &5069000821566819760
 Animator:
   serializedVersion: 5

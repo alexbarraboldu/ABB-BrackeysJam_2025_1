@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BoxTaskManager : BaseSingleton<BoxTaskManager>
 {
-	[SerializeField] private BoxDataHolderSO _boxDataHolder;
+	[SerializeField] private BoxDataHolderSO _boxDataHolder = null;
 
 	private BoxSpawner _boxSpawner;
 	private BoxTaskSpawner _boxTaskSpawner;

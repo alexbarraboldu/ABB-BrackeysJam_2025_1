@@ -27,7 +27,7 @@ public class PlayerInteractionController : MonoBehaviour
 
 		if (Input.GetButtonDown("Jump"))
 		{
-			if (_grabObject.IsGrabbing) _grabObject.Grab(null);
+			if (_grabObject.HasObject) _grabObject.SetGrabObject(null);
 			else Interact(topFront, bottomFront);
 		}
 	}
@@ -38,13 +38,12 @@ public class PlayerInteractionController : MonoBehaviour
 		Collider[] colliders = Physics.OverlapCapsule(topFront, bottomFront, 1f, _interactableMask | _objectMask);
 		if (colliders.LongLength > 0)
 		{
-			GameObject iGO = colliders.SelectFirstOrDefaultByLayers(new() { _objectMask, _interactableMask });
+			GameObject iGO = colliders.SelectFirstOrNullByLayers(new() { _objectMask, _interactableMask });
 			if (iGO == null) return;
 
-			iGO.TryGetComponent(out IOnNotify onNotify);
+			iGO.GetComponent<IOnNotify>().OnNotify();
 
-			if ((1 << iGO.layer) == _objectMask) _grabObject.Grab(iGO);
-			else onNotify?.OnNotify();
+			if ((1 << iGO.layer) == _objectMask) _grabObject.SetGrabObject(iGO.transform);
 		}
 	}
 }

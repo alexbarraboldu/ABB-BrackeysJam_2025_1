@@ -7,13 +7,14 @@ public class ScoreController : MonoBehaviour
 {
 	public int points = 0;
 
-	[SerializeField] private Image _progressSlider;
+	[SerializeField] private Image _progressSlider = null;
 
-	[SerializeField] private List<GameObject> _stars;
+	[SerializeField] private List<GameObject> _stars = new();
 
 	private int min1 = 1;
 	private int min2 = 2;
 	private int min3 = 4;
+
 
 	private void Awake()
 	{

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundEffectManager : BaseSingleton<SoundEffectManager>
 {
-	[SerializeField] private AudioSource _audioSource;
+	[SerializeField] private AudioSource _audioSource = null;
 
 	public void PlaySoundClip(AudioClip clip, Transform transform, float volume)
 	{

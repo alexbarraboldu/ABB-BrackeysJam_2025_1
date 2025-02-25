@@ -23,16 +23,16 @@ namespace Utils
 			return collider.gameObject.layer.Equals(LayerMask.NameToLayer(layerName));
 		}
 
-		public static GameObject SelectFirstOrDefaultByLayers(this Collider[] colliders, List<LayerMask> layerMasks)
+		public static GameObject SelectFirstOrNullByLayers(this Collider[] colliders, List<LayerMask> layerMasks)
 		{
 			GameObject result = null;
-			for (int i = 0; i < colliders.Length; i++)
+			for (int i = 0; i < layerMasks.Count; i++)
 			{
-				for (int j = 0; j < layerMasks.Count; j++)
+				for (int j = 0; j < colliders.Length; j++)
 				{
-					if (1 << colliders[i].gameObject.layer == layerMasks[j])
+					if (1 << colliders[j].gameObject.layer == layerMasks[i])
 					{
-						return colliders[i].gameObject;
+						return colliders[j].gameObject;
 					}
 				}
 			}

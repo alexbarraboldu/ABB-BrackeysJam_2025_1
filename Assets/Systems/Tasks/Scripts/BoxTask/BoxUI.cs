@@ -7,13 +7,13 @@ using UnityEngine.UI;
 public class BoxUI : MonoBehaviour
 {
 	[Header("Progress bar")]
-	[SerializeField] private Image sliderImage;
+	[SerializeField] private Image sliderImage = null;
 
 	[Header("Tasks")]
-	[SerializeField] private MeshFilter boxMeshFilter;
-	[SerializeField] private Image stampImage;
-	[SerializeField] private Image colorImage;
-	[SerializeField] private TMP_Text doorNumText;
+	[SerializeField] private MeshFilter boxMeshFilter = null;
+	[SerializeField] private Image stampImage = null;
+	[SerializeField] private Image colorImage = null;
+	[SerializeField] private TMP_Text doorNumText = null;
 
 
 	public void SetSlider(float value)

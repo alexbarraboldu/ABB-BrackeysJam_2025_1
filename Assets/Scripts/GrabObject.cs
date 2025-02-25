@@ -5,15 +5,15 @@ using UnityEngine;
 public class GrabObject : MonoBehaviour
 {
 	private Transform _grabTransform = null;
-	private IOnNotify _onNotify = null;
 
-	public bool IsGrabbing => _grabTransform != null;
+	public bool HasObject => _grabTransform != null;
 
 
-	[SerializeField] private Transform _grabPoint;
+	[SerializeField] private Transform _grabPoint = null;
+	private float _objectSizeZ = 0;
 
 	[Header("Animator")]
-	[SerializeField] private Animator _animator;
+	[SerializeField] private Animator _animator = null;
 
 	[Header("Effect Sounds")]
 	[SerializeField] private List<AudioClip> _audioClips = new();
@@ -21,52 +21,30 @@ public class GrabObject : MonoBehaviour
 
 	private void Update()
 	{
-		if (_onNotify != null)
+		if (HasObject)
 		{
-			_grabTransform.position = _grabPoint.position + (_grabTransform.forward * 0.5f);
+			_grabTransform.position = _grabPoint.position + (_grabTransform.forward * _objectSizeZ);
 			_grabTransform.rotation = _grabPoint.rotation;
 		}
 	}
 
 
-	public void Grab(GameObject gObject)
+	public void SetGrabObject(Transform transform)
 	{
-		if (_onNotify == null)
-		{
-			if (gObject.TryGetComponent(out IOnNotify component))
-			{
-				SetIsGrabing(component, gObject.transform);
-			}
-		}
+		int isGrabing = transform != null ? 1 : 0;
+
+		if (isGrabing == 0) _grabTransform.GetComponent<IOnNotify>().OnNotify();
 		else
 		{
-			SetIsGrabing(null, null);
-		}
-	}
-
-	private void SetIsGrabing(IOnNotify component, Transform transform)
-	{
-		bool isGrabing = component != null;
-
-		if (isGrabing)
-		{
-			_onNotify = component;
-			_onNotify.OnNotify();
-
-			_grabTransform = transform;
-
-			SoundEffectManager.Instance.PlaySoundClip(_audioClips[0], _grabPoint, 1f);
-		}
-		else
-		{
-			_onNotify.OnNotify();
-			_onNotify = null;
-
-			_grabTransform = null;
-
-			SoundEffectManager.Instance.PlaySoundClip(_audioClips[1], _grabPoint, 1f);
+			BoxCollider collider = transform.GetComponent<BoxCollider>();
+ 			_objectSizeZ = collider.size.z / 2f;
 		}
 
-		_animator.SetLayerWeight(1, isGrabing ? 1f : 0f);
+		_grabTransform = transform;
+
+		SoundEffectManager.Instance.PlaySoundClip(_audioClips[isGrabing], _grabPoint, 1f);
+
+		_animator.SetLayerWeight(1, isGrabing);
+
 	}
 }

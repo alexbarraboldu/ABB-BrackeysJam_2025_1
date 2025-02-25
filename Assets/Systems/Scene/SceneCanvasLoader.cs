@@ -5,8 +5,8 @@ using UnityEngine;
 [Serializable]
 public class SceneCanvasLoader
 {
-	[SerializeField] private GameObject _loaderCanvas;
-	[SerializeField] private UnityEngine.UI.Image _progressBar;
+	[SerializeField] private GameObject _loaderCanvas = null;
+	[SerializeField] private UnityEngine.UI.Image _progressBar = null;
 
 	private float _progressAmountTarget;
 	

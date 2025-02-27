@@ -4978,6 +4978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pauseMenu: {fileID: 378713837}
+  IsPaused: 0
 --- !u!1001 &1797283351
 PrefabInstance:
   m_ObjectHideFlags: 0
